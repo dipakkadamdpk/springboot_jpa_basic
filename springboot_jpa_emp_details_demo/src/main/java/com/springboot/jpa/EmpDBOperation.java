@@ -44,7 +44,6 @@ public class EmpDBOperation {
 	public void saveAllEmployeeInfo() {
 		List<Employee> empList = new ArrayList<>();
 
-		
 		empList.add(new Employee(1, "Amit", 37475799, "Male", 32, "Bangalore", "India", 43434.34));
 		empList.add(new Employee(2, "John", 37475800, "Male", 28, "New York", "USA", 52000.75));
 		empList.add(new Employee(3, "Maria", 37475801, "Female", 35, "London", "UK", 48000.50));
@@ -57,8 +56,8 @@ public class EmpDBOperation {
 		empList.add(new Employee(10, "Olivia", 37475808, "Female", 31, "Dubai", "UAE", 49000.30));
 		empList.add(new Employee(11, "Amit", 37475799, "Male", 32, "Bangalore", "India", 43434.34));
 		empList.add(new Employee(12, "Sagar", 37475799, "Male", 30, "Chennai", "India", 780000.34));
-		empList.add(new Employee(13, "Divya", 37475799, "Female", 36, "Pune", "Canade", 67999));
-		empList.add(new Employee(14, "Vishakha", 37475799, "Female", 30, "Chennai", "UK", 67000));
+		empList.add(new Employee(13, "Tom", 37475799, "Female", 36, "Pune", "Canade", 67999));
+		empList.add(new Employee(14, "Vishakha", 37475799, "Female", 30, "Texas", "UK", 67000));
 
 		employeeRepository.saveAll(empList);
 
@@ -93,51 +92,77 @@ public class EmpDBOperation {
 		return empList;
 	}
 
-	
 	public List<Employee> getEmpBycity(String city) {
 		List<Employee> empList = employeeRepository.findByCity(city);
 
 		return empList;
 	}
-	
+
 	public List<Employee> getEmpByCountry(String country) {
 		List<Employee> empList = employeeRepository.findByCountry(country);
 
 		return empList;
 	}
-	
+
 	public List<Employee> getEmpByGenderAndCountry(String gender, String country) {
 		List<Employee> empList = employeeRepository.findByGenderAndCountry(gender, country);
 
 		return empList;
 	}
-	
+
 	public List<Employee> getEmpByCityOrCountry(String city, String country) {
 		List<Employee> empList = employeeRepository.findByCityOrCountry(city, country);
 
 		return empList;
 	}
-	
-	
+
 	public List<Employee> getEmpByGenderOrCity(String gender, String city) {
 		List<Employee> empList = employeeRepository.findByGenderOrCity(gender, city);
 
 		return empList;
 	}
-	
-	
-	//delete single Record
+
+	// delete single Record
 	public void deleteSingleRecord(Long id) {
 		employeeRepository.deleteById((long) 5);
-		
+
 	}
-	
-	//delete All employee records
-	
+
+	// delete All employee records
+
 	public void deleteAllEmpRecords() {
 		employeeRepository.deleteAll();
 	}
 
-	
-	
+	// update emp
+
+	// 5-Carlos-Male-Carlos-40-Madrid-Spain
+	public void updateEmpInfo(long id) {
+		Optional<Employee> emp = employeeRepository.findById(id);
+
+		if (emp.isPresent()) {
+			Employee emp1 = emp.get();
+			
+			System.out.println("Before updated emp object : "+emp1);
+			
+			emp1.setAge(26);
+			emp1.setCity("Pune");
+			emp1.setGender("Female");
+			emp1.setEmpName("AK");
+			emp1.setSalary(99999);
+			emp1.setCountry("India");
+			
+			employeeRepository.save(emp1);
+			
+			
+			Optional<Employee> emp2 = employeeRepository.findById(id);
+			
+			System.out.println("after updating emp object : "+emp2.get() +"\n");
+
+		}else {
+			throw new RuntimeException("Requested employee not found..!!");
+		}
+
+	}
+
 }

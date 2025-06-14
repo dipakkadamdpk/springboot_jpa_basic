@@ -22,17 +22,32 @@ public class SpringbootJpaEmpDetailsDemoApplication {
 				args);
 
 		EmpDBOperation empDBOperation = container.getBean(EmpDBOperation.class);
+		empDBOperation.updateEmpInfo(5);
 
 		// empDBOperation.addSingleEmpInformation();
 		
-		 empDBOperation.saveAllEmployeeInfo();
+		 //empDBOperation.saveAllEmployeeInfo();
 
 		// Employee employee = empDBOperation.findEmpBasedOnEmpId((long) 5);
 		// System.out.println(employee.toString());
 
-		//List<Employee> allEmpInfo = empDBOperation.getAllEmpInformation();
-		//System.out.println("Total Employee : "+allEmpInfo.size());
-		//System.out.println(allEmpInfo.toString());
+		/*
+		 * List<Employee> allEmpInfo = empDBOperation.getAllEmpInformation();
+		 * System.out.println("Total Employee : "+allEmpInfo.size()); for (Employee
+		 * employee : allEmpInfo) { System.out.println(employee.getEmpId() +
+		 * "-"+employee.getEmpName()+"-"+employee.getGender()+"-"+employee.getEmpName()
+		 * +"-"+employee.getAge()+"-"+employee.getCity()+"-"+employee.getCountry()
+		 * +"\n");
+		 * 
+		 * }
+		 */
+		
+		
+	
+		
+		
+		
+	//	System.out.println(allEmpInfo.toString());
 		
 		
 		/*
